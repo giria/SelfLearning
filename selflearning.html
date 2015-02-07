@@ -1,0 +1,723 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>Self Learning Exercises</title>
+
+</head>
+<body>
+<h1>Self Learning Exercises</h1>
+
+<h2>Week 1. Objective-C.</h2>
+
+<p>ANSWERS</p>
+
+<p><strong> 1.  In the following sentence:</strong></p>
+
+<pre><code>[String alloc];
+</code></pre>
+
+<p><strong> we are invoking a class method or an instance method? </strong></p>
+
+<p>We are invoking a class method. Do note that the class methods have the follwing syntax:
+<code>
+  [ ClassName message ];
+</code></p>
+
+<p>where ClassName is the name of the class, NSString in this case.</p>
+
+<hr />
+
+<p><strong> 2. In the following sentence</strong>
+<code>
+  NSString  * name =  [[NSString alloc] init ];
+</code>
+<strong>¿we are invoking class methods or instance methods?</strong></p>
+
+<p>We are invoking a class method and then an instance method. First we are invoking:</p>
+
+<pre><code>   [NSString alloc] ;
+</code></pre>
+
+<p>which returns an object of id type. To this object we send the instance method init, the first line is equivalent to:</p>
+
+<pre><code>    id i = [NSString alloc];
+NSString *nombre = [i init];
+</code></pre>
+
+<p>Do note thtat class methods have the follwoing syntax:</p>
+
+<pre><code>[ ClassName message ];
+</code></pre>
+
+<p>where ClassName is the name of the class, here NSString.</p>
+
+<p>In the second line we call an instance method. Instance methods have the follwing syntax:
+<code>
+   [object message ];
+</code>
+where <em>object</em> is a variable that points to an object who receives a <em>message</em>.</p>
+
+<hr />
+
+<p><strong> 3. Could you write the following sentence</strong>
+<code>
+[[NSString  alloc] init] ;
+</code>
+<strong> in two lines? </strong></p>
+
+<pre><code> id i = [NSString alloc];
+NSString *nombre = [i init];
+</code></pre>
+
+<hr />
+
+<p><strong> 4. What does mean the <em>id</em> type?  </strong></p>
+
+<p>id is a special keyword used in Objective-C to mean “some kind of object.” It does not contain isa pointer (isa, gives the object access to its class and, through the class, to all the classes it inherits from), So you lose compile-time information about the object.
+Example:</p>
+
+<pre><code>NSString* aString = @"Hello";
+id anObj = aString;
+</code></pre>
+
+<p><img src="./images/image08.png" title="Optional title" alt="id type" /></p>
+
+<hr />
+
+<p><strong>5.  Can I use self in a class method?</strong></p>
+
+<p>Yes. Inside class methods, <em>self</em> refers to the object representing the corresponding Class:
+For example:</p>
+
+<pre><code>+ (id)create {
+  return [[self alloc] init];
+}
+</code></pre>
+
+<p>is the same as:</p>
+
+<pre><code>+ (id)create {
+  return [[SomeClass alloc] init];
+}
+</code></pre>
+
+<hr />
+
+<p><strong> 6.  What is a protocol?</strong></p>
+
+<p>In a protocol we declare methods and properties that are not related with a specific class.</p>
+
+<p>https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/WorkingwithProtocols/WorkingwithProtocols.html</p>
+
+<hr />
+
+<p><strong> 7.  What is the syntax to indicate that a class implements a protocol?</strong></p>
+
+<p>In order to indicate that  MyClass conforms the protocol myProtocol we will write:</p>
+
+<pre><code>@interface MyClass : NSObject &lt;MyProtocol&gt;
+…
+@end
+</code></pre>
+
+<hr />
+
+<p><strong> 8.  How can I access the documentations of a class in Xcode?</strong></p>
+
+<p> (Just place the cursos over the class and press ⌥ + click)</p>
+
+<p><img src="./images/image05.png" title="Optional title" alt="Tipo id" /></p>
+
+<hr />
+
+<p><strong> 9. How can I to  highlight the signature of a method?</strong></p>
+
+<p>Just place the cursor over the method and press ⌘</p>
+
+<p><img src="./images/image07.png" title="Optional title" alt="Alt text" /></p>
+
+<hr />
+
+<p><strong> 10. NSUInteger is an Objective-C class or a primitive of C? ¿How I know it?</strong></p>
+
+<p>Is a C structure, access the documentations and note that NSUInteger is a typedef</p>
+
+<hr />
+
+<p><strong> 11.  NSString is an Objective-C or a primitve type of C?</strong></p>
+
+<p>NSString is an object of Objective-C, access the documentation and note that is an object.</p>
+
+<hr />
+
+<p>  <strong>12.What is a delegate? How can indicate that a class is a delegate?</strong></p>
+
+<p>A delegate is an object that acts on behalf of, or in coordination with, another object when that object encounters an event in a program. The delegating object is often a responder object—that is, an object inheriting from NSResponder in AppKit or UIResponder in UIKit—that is responding to a user event. The delegate is an object that is delegated control of the user interface for that event, or is at least asked to interpret the event in an application-specific manner.</p>
+
+<p>https://developer.apple.com/library/ios/documentation/general/conceptual/CocoaEncyclopedia/DelegatesandDataSources/DelegatesandDataSources.html</p>
+
+<hr />
+
+<p>  <strong>13. For the followoing variables:</strong></p>
+
+<pre><code> int i = 1;
+  NSUInteger count = 2;
+NSNumber number = @1;
+</code></pre>
+
+<p><strong>   Write code to find out the address memory where these variables are stored.</strong></p>
+
+<pre><code>NSLog(@"value:%p", &amp;i);
+NSLog(@"count:%p", &amp;count);
+NSLog(@"myString:%p", myString);
+NSLog(@"myArr:%p", &amp;number);
+</code></pre>
+
+<p>We get:</p>
+
+<pre><code>value:   0xbfffc968                                                                      count:  0xbfffc964
+myString:  0x7e14                                                                       myArr:  0xbfffc95c  
+</code></pre>
+
+<p>Results will be different in different computers.</p>
+
+<hr />
+
+<p><strong> 14. ¿What does mean the keyword static on a local variable?</strong></p>
+
+<p>When you use the static modifier on a local variable, the function “remembers” its value across invocations.
+Ejemplo:</p>
+
+<pre><code>// main.m
+#import &lt;Foundation/Foundation.h&gt;
+int countByTwo() {
+ static int currentCount = 0;
+currentCount += 2; return currentCount;
+}
+ int main(int argc, const char * argv[]) {
+ @autoreleasepool {
+   NSLog(@"%d", countByTwo()); // 2
+   NSLog(@"%d", countByTwo()); // 4
+   NSLog(@"%d", countByTwo()); // 6
+    return 0;
+    ]
+ }
+</code></pre>
+
+<hr />
+
+<p><strong> 15. iOS8 uses by default Manual Reference Counting or ARC  (Automatic Reference Counting)? How can I force Xcode not to use ARC?</strong></p>
+
+<p>By default XCode I  uses ARC. In order to use Manual Reference Counting, do the following:</p>
+
+<p>In Xcode 5.0.2, select your project in Navigatior, select Build Settings, search for Apple LLVM 5.0 - Language - Objective C and change Objective-C Automatic Refence Counting to NO</p>
+
+<p><img src="./images/image04.png" title="Optional title" alt="Alt text" /></p>
+
+<p><strong> 16. XCode uses Autolayout? How can If orce Xcode not to use AutoLayout?</strong></p>
+
+<p>Also from  Interface Builder selecting Main.storyboardwe can enable o disable Autolayout with a  checkbox:</p>
+
+<p><img src="./images/image11.png" title="Optional title" alt="Alt text" /></p>
+
+<hr />
+
+<p><strong> 17. After learning Manual Memory Management, how do you interpret the following drawing?</strong></p>
+
+<p><img src="./images/image06.png" title="Optional title" alt="Manual Memory Management" /></p>
+
+<p>Answer:  From left to right,
+First, an instance of Class A creates a new object - it has a retain count of one. In code:
+<code>
+@interface A {
+     - instanceMethod {
+     X x = [[ X alloc] init ]; // after creation object X has a retain count of 1
+    }
+}
+</code>
+An instance of Class B retains the new object - it now has a retain count of 2.
+An instance of class C makes a copy of the new object - this is another new object, with a retain count of one.
+The instance of Class A releases the new object - it now has a retain count of 1, so is not deallocated.
+Class C releases its copy - the copied instance is deallocated
+Class B releases its reference to the new object. The reference count returns to zero and it is deallocated.</p>
+
+<hr />
+
+<p><strong> 18. What is the result of the following sentence?</strong></p>
+
+<pre><code>[nil isEqual: nil];      // returns NO!
+</code></pre>
+
+<p>Objective-C allows to send any message to nil, and it will ever return 0 (or false).Objective-C allows sending any mesage to nil, and will always return 0, even in cases likes this where it makes no sense.</p>
+
+<hr />
+
+<p><strong> 19. What is the result of the following code?</strong></p>
+
+<pre><code>BOOL result = [[NSMutableArray array] isMemberOfClass:[NSArray class]];
+NSLog (@"%@", result? @"Yes!" : @"No!");   // returns No!
+</code></pre>
+
+<p>Mehtod isMeemberOfClass: only will return TRUE if the instance is exactly of class [NSArray class]. But in this case instance pertains to class NSMutableArray, different of  NSArray so it returns NO.</p>
+
+<hr />
+
+<p><strong> 20. What is the result of the following code? </strong></p>
+
+<pre><code>BOOL result = [[NSMutableArray array] isKindOfClass:[NSArray class]];
+NSLog (@"%@", result? @"Yes!" : @"No!");   // returns YES!
+</code></pre>
+
+<p>Method isKindOfClass: only returns  TRUE if the instance is exactly of class [NSArray class] or a subclass. In this case, instance pertains to class  NSMutableArray, a subclass de  NSArray, so it returns YES.</p>
+
+<hr />
+
+<h2>Self Learning Exercises.  Week 2  ( View )</h2>
+
+<h2></h2>
+
+<p><strong> 1.  To modelize a text string we have NSString classes and their mutable version NSMutableString. In the following example we modify the value of a NSString varibale. How is it possible? Is is it not NSString immutable?</strong></p>
+
+<pre><code>#import &lt;Foundation/Foundation.h&gt;
+ @interface Person : NSObject
+@property (nonatomic,strong)
+NSString *name; // strong should be copy
+@end
+@implementation Person
+@end
+ int main(int argc, char *argv[]) {
+   @autoreleasepool {
+      Person *p = [Person new];
+      NSMutableString *name = [[NSMutableString alloc] initWithString:@"Alice"];
+      p.name = name;
+      NSLog(@"%@",p.name); // prints Alice
+      [name stringByAppendString:@"xxx"];
+      NSLog(@"%@",p.name); // prints Alicexxx }
+}
+</code></pre>
+
+<p>Answer. NSString is  immutable. That is, the content pointed by the pointer (@"Alice" in our case) can not change.</p>
+
+<p><img src="./images/image03.png" title="Optional title" alt="Alt text" /></p>
+
+<p>But it is possible force the pointer in order to point another address, so the content pointed can be different. @"Alice" continues to be immutable, but now is no more referenced by anyone.</p>
+
+<p><img src="./images/image13.png" title="Optional title" alt="Alt text" /></p>
+
+<hr />
+
+<p><strong> 2. Following the prior example, how can we define the property in order to not modify the value?</strong></p>
+
+<pre><code>#import &lt;Foundation/Foundation.h&gt;
+ @interface Person : NSObject
+@property (nonatomic,copy) NSString *name; // strong should be copy
+@end
+@implementation Person
+@end
+ int main(int argc, char *argv[]) {
+   @autoreleasepool {
+      Person *p = [Person new];
+      NSMutableString *name = [[NSMutableString alloc] initWithString:@"Alice"];
+      p.name = name;
+      NSLog(@"%@",p.name); // prints Alice
+      [name stringByAppendString:@"xxx"];
+      NSLog(@"%@",p.name); // prints Alice }
+}
+</code></pre>
+
+<p>Do note that when we execute the sentence:
+p.name = name;</p>
+
+<p>we execute the method set with copy:</p>
+
+<pre><code>-(NSString *) setName: (NSString * string) {
+        return string.copy
+}
+</code></pre>
+
+<hr />
+
+<p><strong> 3. Could you explain the target-action pattern?</strong></p>
+
+<p>Cocoa uses the target-action mechanism for communication between a control and another object. This mechanism allows the control and, in OS X its cell or cells, to encapsulate the information necessary to send an application-specific instruction to the appropriate object. The receiving object—typically an instance of a custom class—is called the target. The action is the message that the control sends to the target. The object that is interested in the user event—the target—is the one that imparts significance to it, and this significance is usually reflected in the name it gives to the action.</p>
+
+<p><img src="./images/image16.jpg" title="Optional title" alt="Alt text" />
+https://developer.apple.com/library/ios/documentation/general/conceptual/Devpedia-CocoaApp/TargetAction.html</p>
+
+<hr />
+
+<p><strong> 4. Could you present an code example of the pattern target-action?</strong></p>
+
+<p>Here we create an UIButton, and then we set a method that will be invoked when we touch it.</p>
+
+<pre><code>{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    button.frame = CGRectMake(10, 10, 100, 50);
+    [self.view addSubview:button];
+
+//   1.Set button's title for normal and highlighted state
+    [button setTitle:@"Normal" forState:UIControlStateNormal];
+    [button setTitle:@"Highlighted" forState:UIControlStateHighlighted];
+
+//   2.When you press it, it should log "You pressed me!" or something similar
+    [button addTarget:self
+               action:@selector(buttonPressed)
+     forControlEvents:UIControlEventTouchDown];
+}
+- (void)buttonPressed
+{
+    NSLog(@"button pressed");
+}
+</code></pre>
+
+<hr />
+
+<p><strong> 5.  How would you define the MVC Pattern? </strong></p>
+
+<p>The model-view-controller pattern proposes three main components or objects to be used:</p>
+
+<ul>
+<li>A Model , which represents the underlying, logical structure of data in a software application and the high-level class associated with it. This object model does not contain any information about the user interface.</li>
+<li>A View , which is a collection of classes representing the elements in the user interface (all of the things the user can see and respond to on the screen, such as buttons, display boxes, and so forth)</li>
+<li>A Controller , which represents the classes connecting the model and the view, and is used to communicate between classes in the model and view.</li>
+</ul>
+
+
+<hr />
+
+<p><strong> 6.  In InterfaceBuilder how can I find out the distance in points from an element to their superview? </strong></p>
+
+<p>We select theelement and press key  ⌥ (option key), Interface Builder will show us 4 distances to top, bottom, left an right.</p>
+
+<hr />
+
+<p> <strong> 7. How can we add a view to the main view?</strong></p>
+
+<p>   We add a view invoking addSubView method Añadiremos la vista invocando  el método addSubView to the view of the ViewController (self.view). For instance:
+<code>
+self.switchLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 200, 100, 50)];
+    self.switchLabel.text = @"Hola caracola";
+    [self.view addSubview:self.switchLabel];
+</code></p>
+
+<hr />
+
+<p><strong> 8. Could you explain the difference betweem frame and bounds of a view?</strong></p>
+
+<p>frame represents where is the view from the superview.
+bounds represents where in the view we can paint (from the view itself)
+For instance, in the follwoing sentence:
+<code>
+[[UIimageView alloc] initWithFrame:CGRectMake(40, 40, 240, 380)];
+</code>
+we make an UIView on the coordinates 40,40 (referenced from the superview:</p>
+
+<p><img src="./images/image00.jpg" title="Optional title" alt="Alt text" /></p>
+
+<p>Instead, the bounds property of the view is: CGRect(0,0,240,380).</p>
+
+<hr />
+
+<p><strong> 9. For UIView what is the difference between initilization methods initWithFrame: and initWithCoder: ?</strong></p>
+
+<p>We will use initWithFrame: when creating a view from code.
+We will use initWithCoder: when we want to load a NIB file created through Interface Builder.</p>
+
+<hr />
+
+<p><strong> 10. How to access the subviews property of a UIView?</strong></p>
+
+<p>Through the property subviews that contains an NSArray with all subviews.</p>
+
+<p><img src="./images/image10.png" title="Optional title" alt="Alt text" /></p>
+
+<p><strong> 11. In the following example we have an Employee class with a property age that contains the employee age. We can get the age this way: </strong></p>
+
+<pre><code>NSString age = employee.age;
+</code></pre>
+
+<p><strong> or modify it: </strong>
+<code>
+employee.age = @”20”;
+</code></p>
+
+<hr />
+
+<p><strong>  How can we access tot the age  property through KVC?</strong></p>
+
+<p>Through KVC we can access to the age with:
+<code>
+[employee valueForKey:@"age"];
+</code></p>
+
+<hr />
+
+<p><strong> 12. How can we, through KVO, make sure the inspector get notifications of change for the property openingBalance and specify that the old and new value being get by the observer method</strong></p>
+
+<pre><code>[account addObserver: inpector
+    forKeyPath: @”openingBlance”
+    options: (NSKeyValueObservingOptionNew |
+            NSKEyValueObservingOptionOld)
+    context: NULL ];
+</code></pre>
+
+<hr />
+
+<p><strong> 13. Can I put an element Popover or an SplitViewController on an iPhone</strong></p>
+
+<p>Only in iOS8. In prior iOs versions Popover and SplitViewController only can be used on an iPad, not an iPhone.</p>
+
+<hr />
+
+<p><strong> 14. How can I instantiate and present a popover on an iPad?.</strong></p>
+
+<pre><code>MyViewController* content = [[MyViewController alloc] init];
+UIPopoverController* aPopover = [[UIPopoverController alloc]
+initWithContentViewController:content];
+aPopover.delegate = self; !
+self.popoverController = aPopover;!
+[self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+</code></pre>
+
+<hr />
+
+<p><strong> 15. How can you create a n ActionSheet by code?</strong></p>
+
+<p><img src="./images/image01.png" title="Optional title" alt="Alt text" /></p>
+
+<p>An ActionSheet is a graphic element that presents to the user a list of choices to execute a job. In order to create we will write in the viewDidLoad method:
+```
+- (void)viewDidLoad {
+  [super viewDidLoad];</p>
+
+<p>  UIActionSheet *actionSheet = [[UIActionSheet alloc]
+          initWithTitle:@"Delegate Example"
+          delegate:self // telling this class to implement UIActionSheetDelegate
+          cancelButtonTitle:@"Cancel"
+          destructiveButtonTitle:@"Destructive Button"
+          otherButtonTitles:@"Other Button",nil</p>
+
+<p>  [actionSheet showInView:self.view];</p>
+
+<p>  [actionSheet release];
+}
+```</p>
+
+<p>We simply ask the controller to implement the protocol UIActionSheet in order to deal with user clicks.
+We will implement this method:</p>
+
+<pre><code>- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+  NSLog(@"hello world!");
+}
+</code></pre>
+
+<p>Finally, our class need to impelement the protocol UIActionSheetDelegate ,so we go to the  .h and add:
+```
+@interface DelegateExampleViewController : UIViewController <UIActionSheetDelegate>
+{</p>
+
+<p>}
+```</p>
+
+<hr />
+
+<p><strong> 16. How to create a xib file in our project?</strong></p>
+
+<p><img src="./images/image02.png" title="Optional title" alt="Alt text" /></p>
+
+<p>If we are creating a new  ViewController, we select the checkbox <em>Also create XIB file</em>. This way we will create the file <em>CustomView.xib</em>.</p>
+
+<hr />
+
+<p><strong> 17. Following the prior example ¿how to load the XIB file in our application?</strong></p>
+
+<p>This cn be do with the following code:</p>
+
+<pre><code>CustomView* customView = [NSBundle mainBundle] loadNibNamed:@"CustomView" owner:nil options:nil] lastObject];
+[self.view addSubview:customView];
+</code></pre>
+
+<hr />
+
+<p><strong> 18. If we have the follwing  Array:</strong></p>
+
+<pre><code>        NSArray *cars = @[@"Mercedes-Benz", @"BMW", @"Porsche",
+                         @"Opel", @"Volkswagen", @"Audi"]
+</code></pre>
+
+<p><strong>how can access the last elementof the array?</strong></p>
+
+<pre><code>cars.lastObject;  // returns @”Audi”
+</code></pre>
+
+<hr />
+
+<p><strong> 19. In the prior example, which is the best way to access to the first element of the Array?</strong></p>
+
+<pre><code>cars.firstObject;  // returns @”Mercedes-Benz”
+</code></pre>
+
+<hr />
+
+<p><strong> 20. New projects have AutoLayout selecected by default. Where can check this setting in InterfaceBuilder?</strong></p>
+
+<p><img src="./images/image09.png" title="Optional title" alt="Alt text" /></p>
+
+<hr />
+
+<p>First Version: 14-10-2014  @Joan Barrull 2014    <br/>
+Reviewed:
+Reviewed:</p>
+</body>
+</html>
