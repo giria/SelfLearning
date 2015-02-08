@@ -66,9 +66,24 @@ NSString* aString = @"Hello";
 ![id type](./images/image08.png "Optional title")
 ***
 
-**5.  ¿Porque en un método de clase no puedo llamar a self?**
+**5.  ¿Se puede usar self en un método de clase?**
 
-Un método estático, por definición, es llamado desde una clase y no desde una instancia de esta clase. En un método de clase no tengo acceso a las variables de instancia.
+Si. Dentro de un método de clase, _self_ indica el objeto que representa la clase correspondiente.:
+Por ejemplo:
+
+```
++ (id)create {
+  return [[self alloc] init];
+}
+```
+is the same as:
+
+ ```
++ (id)create {
+  return [[SomeClass alloc] init];
+}
+```
+
 
 ***
 ** 6.  ¿Que es un protocol?**
